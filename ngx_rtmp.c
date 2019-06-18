@@ -1121,6 +1121,10 @@ ngx_rtmp_process_virtual_host(ngx_rtmp_session_t *s)
     rschema.data = (u_char *) "rtmp://";
     rschema.len = ngx_strlen(rschema.data);
 
+    rtschema.data = (u_char *) "rtmpt://";
+    rtschema.len = ngx_strlen(rschema.data);
+
+
     do {
         schema = &hschema;
 
@@ -1137,6 +1141,15 @@ ngx_rtmp_process_virtual_host(ngx_rtmp_session_t *s)
         {
             break;
         }
+
+        schema = &rtschema;
+
+        if (s->tc_url.len > schema->len
+            && ngx_strncasecmp(s->tc_url.data, schema->data, schema->len) == 0)
+        {
+            break;
+        }
+
 
         return NGX_ERROR;
     } while (0);
