@@ -1111,6 +1111,8 @@ ngx_rtmp_process_virtual_host(ngx_rtmp_session_t *s)
     ngx_str_t   host;
     ngx_str_t   hschema, rschema, *schema;
 
+    ngx_log_error(NGX_LOG_INFO, s->connection->log, 0,
+                      " xxx process_virtual_host");
     if (s->auto_pushed) {
         goto next;
     }
@@ -1131,6 +1133,8 @@ ngx_rtmp_process_virtual_host(ngx_rtmp_session_t *s)
         if (s->tc_url.len > schema->len
             && ngx_strncasecmp(s->tc_url.data, schema->data, schema->len) == 0)
         {
+    ngx_log_error(NGX_LOG_INFO, s->connection->log, 0,
+                      "xxx match http");
             break;
         }
 
@@ -1139,6 +1143,8 @@ ngx_rtmp_process_virtual_host(ngx_rtmp_session_t *s)
         if (s->tc_url.len > schema->len
             && ngx_strncasecmp(s->tc_url.data, schema->data, schema->len) == 0)
         {
+    ngx_log_error(NGX_LOG_INFO, s->connection->log, 0,
+                      "xxx match rtmp");
             break;
         }
 
@@ -1147,6 +1153,8 @@ ngx_rtmp_process_virtual_host(ngx_rtmp_session_t *s)
         if (s->tc_url.len > schema->len
             && ngx_strncasecmp(s->tc_url.data, schema->data, schema->len) == 0)
         {
+    ngx_log_error(NGX_LOG_INFO, s->connection->log, 0,
+                      "xxx match rtmpt");
             break;
         }
 
@@ -1170,7 +1178,11 @@ next:
 
     rc = ngx_rtmp_validate_host(&host, s->connection->pool, 0);
 
+    ngx_log_error(NGX_LOG_INFO, s->connection->log, 0,
+                      "xxx after validate");
     if (rc == NGX_DECLINED) {
+    ngx_log_error(NGX_LOG_INFO, s->connection->log, 0,
+                      "xxx declined");
         ngx_log_error(NGX_LOG_INFO, s->connection->log, 0,
                       "client send invalid host in request line");
         return NGX_ERROR;
@@ -1183,10 +1195,14 @@ next:
     }
 #endif
 
+    ngx_log_error(NGX_LOG_INFO, s->connection->log, 0,
+                      "xxx set virtual server");
     if (ngx_rtmp_set_virtual_server(s, &host) == NGX_ERROR) {
         return NGX_ERROR;
     }
 
+    ngx_log_error(NGX_LOG_INFO, s->connection->log, 0,
+                      "xxx ok");
     return NGX_OK;
 }
 
