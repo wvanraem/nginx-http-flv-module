@@ -1109,7 +1109,7 @@ ngx_rtmp_process_virtual_host(ngx_rtmp_session_t *s)
     u_char     *p;
     ngx_int_t   rc;
     ngx_str_t   host;
-    ngx_str_t   hschema, rschema, *schema;
+    ngx_str_t   hschema, rschema, rtschema, *schema;
 
     ngx_log_error(NGX_LOG_INFO, s->connection->log, 0,
                       " xxx process_virtual_host");
