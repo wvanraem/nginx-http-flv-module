@@ -1163,7 +1163,7 @@ ngx_rtmp_process_virtual_host(ngx_rtmp_session_t *s)
     } while (0);
 
     ngx_log_error(NGX_LOG_INFO, s->connection->log, 0,
-                      "xxx incoming host: %s", schema->data);
+                      "xxx incoming host: %s", s->tc_url.data);
     s->host_start = s->tc_url.data + schema->len;
 
     p = ngx_strlchr(s->host_start, s->tc_url.data + s->tc_url.len, ':');
@@ -1181,7 +1181,7 @@ next:
     rc = ngx_rtmp_validate_host(&host, s->connection->pool, 0);
 
     ngx_log_error(NGX_LOG_INFO, s->connection->log, 0,
-                      "xxx after validate: %s", schema->data);
+                      "xxx after validate: %s", s->tc_url.data);
     if (rc == NGX_DECLINED) {
     ngx_log_error(NGX_LOG_INFO, s->connection->log, 0,
                       "xxx declined");

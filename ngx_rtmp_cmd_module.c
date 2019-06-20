@@ -194,14 +194,15 @@ ngx_rtmp_cmd_connect_init(ngx_rtmp_session_t *s, ngx_rtmp_header_t *h,
         s->host_start = v.server_name;
         s->host_end = v.server_name + ngx_strlen(v.server_name);
     }
-
+    
+    /* 
     if (ngx_rtmp_process_virtual_host(s) != NGX_OK) {
         ngx_log_error(NGX_LOG_ERR, s->connection->log, 0,
                       "connect: failed to process virtual host");
 
         return NGX_ERROR;
     }
-
+*/
     ngx_rtmp_cmd_fill_args(v.app, v.args);
 
     len = ngx_strlen(v.app);
