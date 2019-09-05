@@ -127,7 +127,7 @@ ngx_rtmp_parse_request_line(ngx_rtmp_session_t *s, ngx_buf_t *b)
                 break;
             }
 
-            if ((ch >= '0' && ch <= '9') || ch == '.' || ch == '-') {
+            if ((ch >= '0' && ch <= '9') || ch == '.' || ch == '-' || ch == '_') {
                 break;
             }
 
